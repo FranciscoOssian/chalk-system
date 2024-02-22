@@ -1,4 +1,5 @@
 import { io } from "./server";
+import admin from "./firebase";
 import Bucket from "./bucket";
 
 import { UserType } from "./types";
@@ -49,8 +50,13 @@ const logUserEnter = (user: UserType) =>
   console.log(`\n user ender -> fbUid: ${user.uid}`);
 
 io.on("connection", (socket: any) => {
-  socket.once("add_user", (user: UserType) => {
+  socket.once("add_user", async (user: UserType) => {
     if (!user?.uid || user?.age < 18) return;
+    try {
+      await admin.auth().getUser(user?.uid);
+    } catch (e) {
+      return;
+    }
     if (!user?.matchingConfig) return;
     if (!user?.matchingConfig?.from) return;
     if (!user?.matchingConfig?.to) return;
