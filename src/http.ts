@@ -10,11 +10,29 @@ const limiter = rateLimit({
 
 const queueInvite = fastq.promise(worker, 1);
 
-const firebase = admin.initializeApp({
-  credential: admin.credential.cert(
-    require("../GoogleServices/chalk-firebase-adminsdk.json")
-  ),
-});
+let firebase: admin.app.App;
+
+const paths = [
+  "../GoogleServices/chalk-firebase-adminsdk.json",
+  "/etc/secrets/chalk-firebase-adminsdk.json",
+];
+
+const path =
+  paths.find((p) => {
+    try {
+      return require.resolve(p);
+    } catch (error) {
+      return false;
+    }
+  }) || "";
+
+if (path) {
+  firebase = admin.initializeApp({
+    credential: admin.credential.cert(require(path)),
+  });
+} else {
+  console.error("Error loading Firebase credentials file.");
+}
 
 const getUserRef = (id: string) =>
   firebase.firestore().collection("Users").doc(id);
