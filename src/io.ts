@@ -13,6 +13,8 @@ const onUserAdd = (user: UserType, socketId: string) => {
 
   langsBucket.add(lang, socketId, user);
 
+  console.log(langsBucket.getAllBuckets());
+
   const filteredLang = langsBucket
     .get(lang)
     .filter((p) => p.data.uid !== user.uid);
