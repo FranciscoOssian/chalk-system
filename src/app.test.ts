@@ -85,7 +85,7 @@ describe("WebSocket Connection", async () => {
     profilePicture: "",
     authenticated: randomInt(0, 1) ? true : false,
     matchingConfig: {
-      lang: user?.matchingConfig.lang ?? randomInt(0, 1) ? "pt" : "en",
+      lang: user?.matchingConfig.lang ?? (randomInt(0, 1) ? "pt" : "en"),
       from: user?.matchingConfig.from ?? user?.age ?? randomInt(18, 50),
       to: user?.matchingConfig.to ?? user?.age ?? randomInt(50, 100),
       genders: [
