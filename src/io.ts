@@ -37,6 +37,7 @@ const onUserAdd = (user: UserType, socketId: string) => {
   if (!!filteredGender[0]) {
     langsBucket.remove(lang, filteredGender[0].id);
     langsBucket.remove(lang, socketId);
+    console.log("match finded");
     io.to(filteredGender[0].id).emit("match", user);
     io.to(socketId).emit("match", filteredGender[0].data);
   }

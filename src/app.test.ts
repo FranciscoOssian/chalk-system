@@ -99,7 +99,9 @@ describe("WebSocket Connection", async () => {
   });
 
   await it("should connect and send user", async () => {
-    const onMatch = (u: any) => {};
+    const onMatch = (u: any) => {
+      console.log("matching", u.uid);
+    };
     await sendUser(
       makeMockUser({
         age: 18,
