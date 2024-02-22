@@ -81,7 +81,7 @@ describe("WebSocket Connection", async () => {
     bio: `${randomInt(18, 100)}-bio`,
     age: user?.age ?? randomInt(18, 100),
     gender: user?.gender ?? "",
-    uid: randomInt(1000),
+    uid: user.id,
     profilePicture: "",
     authenticated: randomInt(0, 1) ? true : false,
     matchingConfig: {
@@ -104,6 +104,7 @@ describe("WebSocket Connection", async () => {
     };
     await sendUser(
       makeMockUser({
+        id: "2IYtvgWaG1UxLITVfNaIoThJN9G2",
         age: 18,
         gender: "Man",
         matchingConfig: {
@@ -116,6 +117,7 @@ describe("WebSocket Connection", async () => {
     );
     await sendUser(
       makeMockUser({
+        id: "z9IUQOqltBamt4QfmNJ1yh6QCrK2",
         age: 18,
         gender: "Man",
         matchingConfig: {
