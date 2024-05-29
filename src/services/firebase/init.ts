@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 let firebase: admin.app.App;
 
 const paths = [
-  "../GoogleServices/chalk-firebase-adminsdk.json",
+  "../../../GoogleServices/chalk-firebase-adminsdk.json",
   "/etc/secrets/chalk-firebase-adminsdk.json",
 ];
 

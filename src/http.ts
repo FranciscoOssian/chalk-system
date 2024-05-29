@@ -1,5 +1,5 @@
 import { http } from "./server";
-import admin from "./firebase";
+import admin from "./services/firebase/init";
 import * as fastq from "fastq";
 import rateLimit from "express-rate-limit";
 
