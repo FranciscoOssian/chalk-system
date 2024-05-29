@@ -19,7 +19,7 @@ collectionRef
         users.push({ ...doc.data(), id: doc.id });
       });
       myCache.set(cacheKey, users);
-      console.log(users);
+      console.log("cached users: length", users.length);
     }
   })
   .catch((error) => {
