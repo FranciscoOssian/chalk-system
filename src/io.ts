@@ -39,7 +39,7 @@ const onUserAskToMatch = async (user: UserType) => {
 
 io.on("connection", (socket: any) => {
   const userBlock = async (user: UserType): Promise<boolean> => {
-    if (!user?.uid || user?.age < 18) return true;
+    if (!user?.id || user?.age < 18) return true;
     if (!user?.matchingConfig) return true;
     if (!user?.matchingConfig?.from) return true;
     if (!user?.matchingConfig?.to) return true;
@@ -51,6 +51,7 @@ io.on("connection", (socket: any) => {
   socket.once("match_user", async (user: UserType) => {
     if ((await userBlock(user)) === true) return;
     const usr = await onUserAskToMatch(user);
+    console.log(usr);
     socket.emit("match_user:response", usr);
   });
 

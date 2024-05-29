@@ -33,7 +33,7 @@ describe("WebSocket Connection", async () => {
         bio: "lkdn",
         age: 18,
         gender: "Man",
-        uid: "edwed",
+        id: "edwed",
         profilePicture: "sdc",
         authenticated: true,
         matchingConfig: {

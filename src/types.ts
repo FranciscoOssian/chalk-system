@@ -2,7 +2,7 @@ export interface UserType {
   name: string;
   bio: string;
   age: number;
-  uid: string;
+  id: string;
   gender: string;
   profilePicture: string;
   authenticated: boolean;
