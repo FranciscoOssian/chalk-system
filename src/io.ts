@@ -25,8 +25,8 @@ const onUserAskToMatch = async (user: UserType) => {
   });
 
   const filteredGender = filteredAge.filter((p) => {
-    if (p?.matchingConfig?.genders.includes(user?.gender)) {
-      if (user?.matchingConfig?.genders.includes(p?.gender)) {
+    if (p?.matchingConfig?.genders?.includes(user?.gender)) {
+      if (user?.matchingConfig?.genders?.includes(p?.gender)) {
         return true;
       }
     }
