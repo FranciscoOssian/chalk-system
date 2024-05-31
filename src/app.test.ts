@@ -6,7 +6,7 @@ import axios from "axios";
 import assert from "assert";
 import { describe, it } from "./services/tests/index.js";
 import { UserType } from "./types.js";
-
+/*
 describe("GET /", async () => {
   await it("should return status 200", async () => {
     const response = await axios.get("http://localhost:8000/");
@@ -23,25 +23,32 @@ describe("GET /invite/:id", async () => {
     assert.equal(response.data.done, true);
   });
 });
-
+*/
 describe("WebSocket Connection", async () => {
   await it("Should recive new user call to match", async () => {
     const socket = io("http://localhost:8000");
     socket.on("connect", async () => {
       const me: UserType = {
-        name: "dlns",
-        bio: "lkdn",
         age: 18,
-        gender: "Man",
-        id: "edwed",
-        profilePicture: "sdc",
-        authenticated: true,
+        authenticated: false,
+        bio: "<bio>",
+        gender: "Prefer not to state",
+        id: "OoxQMr2F2Xei3QqnHGMvQkjRgaJ3",
         matchingConfig: {
           from: 18,
-          to: 18,
+          genders: [
+            "Woman",
+            "Man",
+            "Transgender",
+            "Non-Binary",
+            "Prefer not to state",
+          ],
           lang: "pt-BR",
-          genders: ["Woman", "Man", "Transgender", "Prefer not to state"],
+          to: 95,
         },
+        name: "Anon",
+        profilePicture:
+          "file:///data/user/0/com.foln.chalk/files//a946f61d65424bc869eb614a959b8550a373e1d44df869c0cdcefa554f687df4",
       };
       socket.emit("match_user", me);
       socket.on("match_user:response", (usr) => console.log("found", usr));

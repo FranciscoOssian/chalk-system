@@ -16,7 +16,12 @@ collectionRef
     if (!snapshot.empty) {
       const users: any[] = [];
       snapshot.forEach((doc) => {
-        users.push({ ...doc.data(), id: doc.id });
+        const userData = doc.data();
+        if (userData?.matchingConfig)
+          userData.matchingConfig.genders = Object.keys(
+            userData.matchingConfig.genders
+          ).map((key) => userData.matchingConfig.genders[key]);
+        users.push({ ...userData, id: doc.id });
       });
       myCache.set(cacheKey, users);
       console.log("cached users: length", users.length);
@@ -31,6 +36,10 @@ db.collection("Users").onSnapshot(
   (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       const userData = change.doc.data();
+      if (userData?.matchingConfig)
+        userData.matchingConfig.genders = Object.keys(
+          userData.matchingConfig.genders
+        ).map((key) => userData.matchingConfig.genders[key]);
       if (change.type === "added") {
         addUserToCache({ ...userData, id: change.doc.id });
       }
