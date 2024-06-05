@@ -15,6 +15,8 @@ const onUserAskToMatch = async (user: UserType) => {
     (p) => p?.matchingConfig?.lang === lang
   );
 
+  console.log(filteredLang);
+
   const filteredAge = filteredLang.filter((p) => {
     const f = p?.matchingConfig?.from;
     const t = p?.matchingConfig?.to;
@@ -23,6 +25,8 @@ const onUserAskToMatch = async (user: UserType) => {
       insideOfRange(p?.age, [from, to]) && insideOfRange(user?.age, [f, t])
     );
   });
+
+  console.log(filteredAge);
 
   const filteredGender = filteredAge.filter((p) => {
     if (p?.matchingConfig?.genders?.includes(user?.gender)) {
@@ -33,7 +37,12 @@ const onUserAskToMatch = async (user: UserType) => {
     return false;
   });
 
+  console.log(filteredGender);
+
   const randomIndex = Math.floor(Math.random() * filteredGender.length);
+
+  console.log(filteredGender[randomIndex], randomIndex);
+
   return filteredGender[randomIndex];
 };
 
