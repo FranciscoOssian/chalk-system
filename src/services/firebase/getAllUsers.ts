@@ -17,7 +17,7 @@ collectionRef
       const users: any[] = [];
       snapshot.forEach((doc) => {
         const userData = doc.data();
-        if (userData?.matchingConfig)
+        if (userData?.matchingConfig?.genders)
           userData.matchingConfig.genders = Object.keys(
             userData.matchingConfig?.genders || {}
           ).map((key) => userData.matchingConfig.genders[key]);
@@ -36,7 +36,7 @@ db.collection("Users").onSnapshot(
   (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       const userData = change.doc.data();
-      if (userData?.matchingConfig)
+      if (userData?.matchingConfig?.genders)
         userData.matchingConfig.genders = Object.keys(
           userData.matchingConfig?.genders || {}
         ).map((key) => userData.matchingConfig.genders[key]);
