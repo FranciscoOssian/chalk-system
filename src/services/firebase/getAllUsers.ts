@@ -19,7 +19,7 @@ collectionRef
         const userData = doc.data();
         if (userData?.matchingConfig)
           userData.matchingConfig.genders = Object.keys(
-            userData.matchingConfig.genders
+            userData.matchingConfig?.genders || {}
           ).map((key) => userData.matchingConfig.genders[key]);
         users.push({ ...userData, id: doc.id });
       });
@@ -38,7 +38,7 @@ db.collection("Users").onSnapshot(
       const userData = change.doc.data();
       if (userData?.matchingConfig)
         userData.matchingConfig.genders = Object.keys(
-          userData.matchingConfig.genders
+          userData.matchingConfig?.genders || {}
         ).map((key) => userData.matchingConfig.genders[key]);
       if (change.type === "added") {
         addUserToCache({ ...userData, id: change.doc.id });
